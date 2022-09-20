@@ -8,6 +8,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EditIcon from '@mui/icons-material/Edit';
 import { useStore, actions } from './store';
 
 function App() {
@@ -22,6 +23,10 @@ function App() {
   const handleDelete = (index) => {
     dispatch(actions.deleteTodo(index))
   } 
+
+  const handleEdit = (index, payload) => {
+    dispatch(actions.editTodo(index, payload))
+  }
 
   return (
     <div className="App">
@@ -52,13 +57,25 @@ function App() {
             <ListItemIcon>
               <AssignmentTurnedInIcon />
             </ListItemIcon>
-            <ListItemText primary={todo} />
+            <ListItemText 
+              primary={todo} 
+            />
+
             <ListItemButton
               // selected={selectedIndex === 0}
               onClick={() => handleDelete(index)}
             >
               <ListItemIcon>
                 <DeleteForeverIcon />
+              </ListItemIcon>
+            </ListItemButton>
+
+            <ListItemButton
+              // selected={selectedIndex === 0}
+              onClick={() => handleEdit(index, payload)}
+            >
+              <ListItemIcon>
+                <EditIcon />
               </ListItemIcon>
             </ListItemButton>
           </ListItem>
